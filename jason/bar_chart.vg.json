@@ -1,4 +1,4 @@
-{
+
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "width": 500,
   "height": 400,
@@ -7,14 +7,34 @@
   },
   "transform": [
     {
-      "aggregate": [{"op": "mean", "field": "Deaths", "as": "mean_deaths"}],
+      "aggregate": [{"op": "sum", "field": "Deaths", "as": "mean_deaths"}],
       "groupby": ["Continent"]
     }
   ],
-  "mark": "bar",
+    "layer": [{
+    "mark": "bar"
+  }, {
+    "mark": {
+      "type": "text",
+      "align": "center",
+      "baseline": "",
+      "dx": 3
+    },
+    "encoding": {
+      "text": {"field": "mean_deaths", "type": "quantitative"}
+    }
+  }],
+  
+"mark": {"type": "text", "tooltip": true,
+    "baseline": "middle",
+       "dx": -12,
+      "fontSize": 11.5,
+       "fontStyle": "italic"},
   "encoding": {
+    
     "x": {"field": "Continent", "type": "ordinal"},
     "y": {"field": "mean_deaths", "type": "quantitative"}
-  },
-  "config": {}
+  }
+  
+  
 }
