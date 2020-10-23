@@ -11,20 +11,7 @@
       "groupby": ["Continent"]
     }
   ],
-    "layer": [{
-    "mark": "bar"
-  }, {
-    "mark": {
-      "type": "text",
-      "align": "center",
-      "baseline": "",
-      "dx": 3
-    },
-    "encoding": {
-      "text": {"field": "mean_deaths", "type": "quantitative"}
-    }
-  }],
-  
+    
 "mark": {"type": "text", "tooltip": true,
     "baseline": "middle",
        "dx": -12,
