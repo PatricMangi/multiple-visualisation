@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 500,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/PatricMangi/multiple-visualisation/main/data/COVID_19_10_Oct_2020.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [{"op": "sum", "field": "Deaths", "as": "mean_deaths"}],
+      "groupby": ["Continent"]
+    }
+  ],
+   
+  
+"mark": {"type": "bar", "tooltip": true,
+    "baseline": "middle",
+       "dx": -12,
+      "fontSize": 11.5,
+       "fontStyle": "italic"},
+  "encoding": {
+    
+    "x": {"field": "Continent", "type": "ordinal"},
+    "y": {"field": "mean_deaths", "type": "quantitative"}
+  }
+  
+  
+}
