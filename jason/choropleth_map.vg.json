@@ -1,0 +1,30 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "World cup attendance",
+  "width": 800,
+  "height": 600,
+  "data": {
+    "url": "https://raw.githubusercontent.com/PatricMangi/work9/main/js/custom.geo%20(1)%20(1).json",
+    "format": {"type": "topojson", "feature": "custom"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/PatricMangi/work9/main/data/WorldCups.csv"
+        },
+        "key": "Country",
+        "fields": ["GoalsScored"]
+      }
+    }
+  ],
+  "mark": {"type": "geoshape"},
+  "encoding": {
+    "color": {
+      "field": "GoalsScored",
+      "type": "quantitative",
+      "scale": {"domain": [0, 200]}
+    }
+  }
+}
