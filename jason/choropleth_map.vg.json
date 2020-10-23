@@ -1,30 +1,42 @@
+
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "World cup attendance",
-  "width": 800,
-  "height": 600,
+  "title": "Percentage of populations in the USA that identify as black (2018).",
+  "width": 600,
+  "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/PatricMangi/multiple-visualisation/main/jason/custom.geo%20(1)%20(1).json",
-    "format": {"type": "topojson", "feature": "custom"}
+    "format": {
+          "type": "topojson",
+          "feature": "ne_110m_admin_1_states_provinces"
+        }
   },
-  "transform": [
-    {
-      "lookup": "properties.name",
+  "transform": [{
+      "lookup": "properties.name_it",
       "from": {
         "data": {
           "url": "https://raw.githubusercontent.com/PatricMangi/multiple-visualisation/main/data/COVID_19_10_Oct_2020.csv"
         },
-        "key": "Country",
-        "fields": ["GoalsScored"]
+        "key": "State",
+        "fields": ["Percent_Black"]
+       
       }
     }
+   
   ],
-  "mark": {"type": "geoshape"},
+
+ "projection": {
+    "type": "albersUsa"
+  },
+  "mark": "geoshape",
   "encoding": {
     "color": {
-      "field": "GoalsScored",
+      "field": "Percent_Black",
       "type": "quantitative",
-      "scale": {"domain": [0, 200]}
+       "scale": {"domain": [0, 50]
+      
     }
   }
+
+}
 }
