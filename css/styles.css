@@ -12,6 +12,15 @@
 	width: 800px;*
 }
 
+.container{
+    display: flex;
+}
+.choropleth_map{
+    width: 200px;
+}
+.bar_chart{
+    flex-grow: 1;
+}
 
 
 body{
