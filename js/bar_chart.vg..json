@@ -5,52 +5,53 @@
   "data": {
     "url": "https://raw.githubusercontent.com/PatricMangi/multiple-visualisation/main/data/COVID_19_10_Oct_2020.csv"
   },
-  "params": [
-    {
-      "name": "Population_Above",
-      "value": 0,
-      "bind": {
-        "input": "range",
-        "min": 0,
-        "max": 400000000,
-        "step": 100000,
-        "name": "Minimum Population: "
-      }
-    },
-    {
-      "name": "Continent_selection",
-      "bind": {
-        "input": "select",
-        "options": [
-          null,
-          "North America",
-          "South America",
-          "Europe",
-          "Africa",
-          "Asia",
-          "Oceania"
-        ],
-        "labels": [
-          "Show All",
-          "North America",
-          "South America",
-          "Europe",
-          "Africa",
-          "Asia",
-          "Oceania"
-        ],
-        "name": "Continent Selection: "
-      }
-    }
-  ],
+   "params": [
+ {
+ "name": "Population_Above",
+ "value": 0,
+ "bind": {
+ "input": "range",
+ "min": 0,
+ "max": 400000000,
+ "step": 100000,
+ "name": "Minimum Population: "
+ }
+ },
+{
+ "name": "Continent_selection",
+ "bind": {
+ "input": "select",
+ "options": [
+ null,
+ "North America",
+ "South America",
+ "Europe",
+ "Africa",
+ "Asia",
+ "Oceania"
+ ],
+ "labels":[
+ "Show All",
+ "North America",
+ "South America",
+ "Europe",
+ "Africa",
+ "Asia",
+ "Oceania"
+ ],
+ "name": "Continent Selection: "
+ }
+ }
+ ],
+
   "transform": [
-    {
-      "filter": "Continent_selection == null || datum.Continent == Continent_selection"
-    },
+    {"filter": "Continent_selection == null || datum.Continent == Continent_selection"},
     {"filter": "datum.Active > 0"},
-    {"filter": "datum.Deaths > 0"},
+ {"filter": "datum.Deaths > 0"},
+
     {"filter": "datum.Population > Population_Above"},
     {
+      
       "aggregate": [{"op": "sum", "field": "Deaths", "as": "mean_deaths"}],
       "groupby": ["Continent"]
     }
@@ -66,6 +67,5 @@
   "encoding": {
     "x": {"field": "Continent", "type": "ordinal"},
     "y": {"field": "mean_deaths", "type": "quantitative"}
-  },
-  "config": {}
+  }
 }
